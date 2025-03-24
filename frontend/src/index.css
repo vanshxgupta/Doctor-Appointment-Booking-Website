@@ -1,1 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&family=Outfit:wght@100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:wght@100..900&display=swap');
 @import "tailwindcss";
+* {
+  font-family: 'Outfit'
+}
+
+/* index.css */
+html {
+  scroll-behavior: smooth;
+}

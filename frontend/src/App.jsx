@@ -10,7 +10,7 @@ import Appointment from './pages/Appointment';
 
 function AppRoutes() {
   return (
-    
+    <div className='mx-2 my-2 '>
       <Routes>
         {/* Public Routes */}
         <Route path="/" element={<Home />} />
@@ -24,8 +24,8 @@ function AppRoutes() {
         <Route path="/appointment/:docId" element={<Appointment />} />
         <Route path="/my-profile" element={<MyProfile />} />
         <Route path="/login" element={<Login />} />
-
       </Routes>
+    </div>
   );
 }
 
