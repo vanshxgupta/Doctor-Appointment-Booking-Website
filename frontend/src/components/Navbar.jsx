@@ -1,48 +1,19 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import { assets } from "../assets/assets_frontend/assets";
 
-function NavItem({ text, onClick }) {
-  return (
-    <div className="justify-center py-2 cursor-pointer" onClick={onClick}>
-      {text}
-    </div>
-  );
-}
-
 function Navbar() {
+
   const navigate = useNavigate();
 
-  const [navItems, setNavItems] = useState([
-    { text: "Home", onClick: () => navigate("/") },
-    { text: "Doctors", onClick: () => navigate("/doctors") },
-    { text: "About", onClick: () => navigate("/about") },
-    { text: "Contact", onClick: () => navigate("/contact") },
-  ]);
-
-  useEffect(() => {
-    // Fetch navigation items from backend
-    async function fetchNavItems() {
-      try {
-        const response = await fetch("/api/navItems");
-        const data = await response.json();
-        setNavItems(
-          data.map((item) => ({
-            ...item,
-            onClick: () => navigate(`/${item.text.toLowerCase()}`),
-          }))
-        );
-      } catch (error) {
-        console.error("Failed to fetch navigation items", error);
-      }
-    }
-
-    fetchNavItems();
-  }, [navigate]);
+  const [showmenu, setshowmenu] = useState(false);
+  const [token, settoken] = useState(true);
+  const [userPhoto, setUserPhoto] = useState(null);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="flex gap-5 justify-between items-center py-1.5 px-6 rounded-3xl backdrop-blur-[17.5px] bg-opacity-80 w-full max-w-full flex-wrap sm:flex-nowrap sm:py-4 sm:px-10 bg-[#ffffffff]">
-      <div className="flex gap-2 justify-between items-center py-1.5 my-auto w-full sm:w-auto">
+    <div className=" mt-20 flex justify-between items-center py-1.5 px-6 rounded-3xl backdrop-blur-[17.5px] bg-opacity-80 w-full max-w-full flex-wrap sm:flex-nowrap sm:py-4 sm:px-10 bg-[#ffffffff] border border-gray-300 shadow-lg">
+      <div className="flex gap-8 justify-between items-center py-1.5 my-auto w-full sm:w-auto">
         <div className="flex justify-center items-center px-0.5">
           <img
             loading="lazy"
@@ -51,21 +22,90 @@ function Navbar() {
             alt="Logo"
           />
         </div>
-        <div className="my-auto uppercase font-extrabold text-lg text-blue-800">
+        <div className="my-auto uppercase font-extrabold text-lg text-blue-800 nav-logo">
           MEDICAL
         </div>
       </div>
-      <nav className="flex sm:flex-row flex-col gap-5 justify-center items-center self-stretch my-auto text-base text-center text-neutral-900 font-light w-full sm:w-auto">
-        {navItems.map((item, index) => (
-          <NavItem key={index} text={item.text} onClick={item.onClick} />
-        ))}
+
+      <div className="sm:hidden flex items-center">
+        <button onClick={() => setSidebarOpen(!sidebarOpen)}>
+          <img src={assets.menu_icon} alt="Menu" className="w-8" />
+        </button>
+      </div>
+
+      <nav className={`sm:flex gap-8 justify-center items-center self-stretch my-auto text-base text-center text-neutral-900 font-medium w-full sm:w-auto nav-links ${sidebarOpen ? 'block' : 'hidden'}`}>
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            isActive
+              ? "py-2 text-blue-800 font-extrabold underline underline-offset-4 decoration-2 transition-all duration-300"
+              : "py-2"
+          }
+        >
+          Home
+        </NavLink>
+        <NavLink
+          to="/doctors"
+          className={({ isActive }) =>
+            isActive
+              ? "py-2 text-blue-800 font-extrabold underline underline-offset-4 decoration-2 transition-all duration-300"
+              : "py-2"
+          }
+        >
+          Doctors
+        </NavLink>
+        <NavLink
+          to="/about"
+          className={({ isActive }) =>
+            isActive
+              ? "py-2 text-blue-800 font-extrabold underline underline-offset-4 decoration-2 transition-all duration-300"
+              : "py-2"
+          }
+        >
+          About
+        </NavLink>
+        <NavLink
+          to="/contact"
+          className={({ isActive }) =>
+            isActive
+              ? "py-2 text-blue-800 font-extrabold underline underline-offset-4 decoration-2 transition-all duration-300"
+              : "py-2"
+          }
+        >
+          Contact
+        </NavLink>
       </nav>
-      <button
-        className="justify-center self-stretch sm:self-auto px-6 py-5 text-base leading-6 text-center text-white rounded-2xl bg-blue-800 hover:bg-blue-600 transition-all duration-300 ease-in-out max-md:px-5 font-light w-full sm:w-auto"
-        onClick={() => navigate("/create-account")}
-      >
-        Create Account
-      </button>
+
+      {token ? (
+        <div 
+          className="relative flex gap-1 group cursor-pointer"
+          onMouseEnter={() => setshowmenu(true)}
+          onMouseLeave={() => setshowmenu(false)}
+        >
+          <div className="w-10 h-10 rounded-full overflow-hidden bg-gray-300 flex justify-center items-center">
+            {userPhoto ? (
+              <img src={userPhoto} alt="User" className="w-full h-full object-cover" />
+            ) : (
+              <span className="text-gray-500 text-xl">U</span>
+            )}
+          </div>
+          <img className="w-2.5" src={assets.dropdown_icon} alt="^" />
+          {showmenu && (
+            <ul className="absolute right-0 mt-10 w-48 bg-white border border-gray-200 rounded-lg shadow-lg">
+              <li className="px-4 py-2 hover:bg-gray-100">My Profile</li>
+              <li className="px-4 py-2 hover:bg-gray-100">My Appointments</li>
+              <li className="px-4 py-2 hover:bg-gray-100">Logout</li>
+            </ul>
+          )}
+        </div>
+      ) : (
+        <Link
+          to="/login"
+          className="justify-center self-stretch sm:self-auto px-4 py-3 text-base leading-6 text-center text-white rounded-2xl bg-blue-800 hover:bg-blue-600 transition-all duration-300 ease-in-out max-md:px-5 font-light w-full sm:w-auto"
+        >
+          Create Account
+        </Link>
+      )}
     </div>
   );
 }
