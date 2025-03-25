@@ -16,13 +16,14 @@ function Navbar() {
       <div className="flex gap-8 justify-between items-center py-1.5 my-auto w-full sm:w-auto">
         <div className="flex justify-center items-center px-0.5">
           <img
+            onClick={()=>navigate('/')}
             loading="lazy"
             src={assets.logo}
-            className="aspect-[1] w-[50px]"
+            className="scale-200 aspect-[1] w-[50px]"
             alt="Logo"
           />
         </div>
-        <div className="my-auto uppercase font-extrabold text-lg text-blue-800 nav-logo">
+        <div onClick={()=>navigate('/')} className=" cursor-pointer my-auto uppercase font-extrabold text-lg text-blue-800 nav-logo">
           MEDICAL
         </div>
       </div>
