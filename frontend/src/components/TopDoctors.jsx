@@ -13,7 +13,7 @@ const TopDoctors = () => {
         {doctors.slice(0, 10).map((item, index) => (
           <div 
             key={index} 
-            onClick={() => navigate(`/doctors/${item._id}`)}
+            onClick={() => navigate(`/appointment/${item._id}`)}
             className={`group w-40 sm:w-72 p-4 bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col items-center text-center border-2 cursor-pointer ${item.availability ? 'border-green-500' : 'border-red-500'}`}
           >
             <img
