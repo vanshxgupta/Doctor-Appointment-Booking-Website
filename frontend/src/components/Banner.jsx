@@ -11,7 +11,7 @@ const Banner = () => {
           <h1 className="text-5xl font-extrabold mb-4">Welcome to Our Platform</h1>
           <p className="text-lg text-gray-600 mb-6">Join us to book appointments with top doctors conveniently.</p>
           <button 
-          onClick={()=>navigate('/login')}
+          onClick={()=>{navigate('/login'); scrollTo(0,0)}}
           className="py-2 px-4 font-medium text-white bg-blue-800 hover:bg-blue-700 rounded-lg">Create Account</button>
         </div>
         <div className="flex justify-center md:justify-end flex-1">
