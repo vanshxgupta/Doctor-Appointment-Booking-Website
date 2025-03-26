@@ -58,7 +58,7 @@ const Doctors = () => {
             filteredDoctors.map((item, index) => (
               <div 
                 key={index} 
-                onClick={() => navigate(`/doctors/${item._id}`)}
+                onClick={() => navigate(`/appointment/${item._id}`)}
                 className={`group w-full p-4 bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col items-center text-center border-2 cursor-pointer ${item.availability ? 'border-green-500' : 'border-red-500'}`}
               >
                 <img
