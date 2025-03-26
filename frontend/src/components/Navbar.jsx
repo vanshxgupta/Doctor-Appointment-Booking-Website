@@ -12,18 +12,18 @@ function Navbar() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className=" mt-20 flex justify-between items-center py-1.5 px-6 rounded-3xl backdrop-blur-[17.5px] bg-opacity-80 w-full max-w-full flex-wrap sm:flex-nowrap sm:py-4 sm:px-10 bg-[#ffffffff] border border-gray-300 shadow-lg">
+    <div className="flex justify-between items-center py-1.5 px-6 rounded-3xl backdrop-blur-[17.5px] bg-opacity-80 w-full max-w-full flex-wrap sm:flex-nowrap sm:py-4 sm:px-10 bg-[#ffffffff] border border-gray-300 shadow-lg">
       <div className="flex gap-8 justify-between items-center py-1.5 my-auto w-full sm:w-auto">
         <div className="flex justify-center items-center px-0.5">
           <img
-            onClick={()=>navigate('/')}
+            onClick={() => navigate('/')}
             loading="lazy"
             src={assets.logo}
             className="scale-200 aspect-[1] w-[50px]"
             alt="Logo"
           />
         </div>
-        <div onClick={()=>navigate('/')} className=" cursor-pointer my-auto uppercase font-extrabold text-lg text-blue-800 nav-logo">
+        <div onClick={() => navigate('/')} className="cursor-pointer my-auto uppercase font-extrabold text-lg text-blue-800 nav-logo">
           MEDICAL
         </div>
       </div>
@@ -78,7 +78,7 @@ function Navbar() {
       </nav>
 
       {token ? (
-        <div 
+        <div
           className="relative flex gap-1 group cursor-pointer"
           onMouseEnter={() => setshowmenu(true)}
           onMouseLeave={() => setshowmenu(false)}
@@ -106,6 +106,15 @@ function Navbar() {
         >
           Create Account
         </Link>
+      )}
+
+      {sidebarOpen && (
+        <div className="sm:hidden absolute top-full left-0 w-full bg-white shadow-lg z-10">
+          <NavLink to="/" className="block px-4 py-2 hover:bg-gray-100">Home</NavLink>
+          <NavLink to="/doctors" className="block px-4 py-2 hover:bg-gray-100">Doctors</NavLink>
+          <NavLink to="/about" className="block px-4 py-2 hover:bg-gray-100">About</NavLink>
+          <NavLink to="/contact" className="block px-4 py-2 hover:bg-gray-100">Contact</NavLink>
+        </div>
       )}
     </div>
   );

@@ -11,8 +11,12 @@ const SpecialityMenu = () => {
 
       <div className=" flex flex-wrap justify-center gap-6">
         {specialityData.map((item, index) => (
-          <Link  to={`/doctors/${item.speciality}`} key={index} className="flex flex-col items-center group">
-            <div className="bg-white p-3 rounded-full shadow-lg hover:shadow-2xl transition-all duration-300 ease-out transform group-hover:-translate-y-2 w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 flex justify-center items-center">
+          
+          <Link  
+          onClick={()=>scrollTo(0,0)}
+          to={`/doctors/${item.speciality.toLowerCase()}`} key={index} className="flex flex-col items-center group">
+            <div
+             className="bg-white p-3 rounded-full shadow-lg hover:shadow-2xl transition-all duration-300 ease-out transform group-hover:-translate-y-2 w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 flex justify-center items-center">
               <img
                 src={item.image}
                 alt={item.speciality}

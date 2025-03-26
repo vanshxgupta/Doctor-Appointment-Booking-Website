@@ -33,8 +33,8 @@ const TopDoctors = () => {
 
       <div className="flex justify-center items-center w-full">
         <button 
-          onClick={()=>navigate('/doctors')}
-          className="mt-6 py-2 px-4 font-medium text-white bg-blue-800 hover:bg-blue-700 rounded-lg"
+          onClick={()=>{navigate('/doctors'); scrollTo(0,0)}}
+          className=" mt-6 py-2 px-4 font-medium text-white bg-blue-800 hover:bg-blue-700 rounded-lg"
         >
           More
         </button>
