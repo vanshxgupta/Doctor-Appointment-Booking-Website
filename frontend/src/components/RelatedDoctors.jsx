@@ -16,8 +16,8 @@ const RelatedDoctors = ({ docId, speciality }) => {
 
   return (
     <>
-      <h2 className='mt-16 text-4xl font-bold text-center mb-6 text-blue-600'>Related Doctors</h2>
-      <div className="mt-10 flex flex-wrap gap-6 justify-center">
+      <h2 className='mt-16 text-2xl sm:text-4xl font-bold text-center mb-6 text-blue-600'>Related Doctors</h2>
+      <div className="mt-6 sm:mt-10 flex flex-wrap gap-2 sm:gap-6 justify-center">
         {filteredDoctors.slice(0, 5).map((item, index) => (
           <div
             key={index}
@@ -27,11 +27,11 @@ const RelatedDoctors = ({ docId, speciality }) => {
             <img
               src={item.image}
               alt={item.name}
-              className="h-60 w-60 rounded-full object-cover "
+              className="h-40 sm:h-60 w-60 rounded-full object-cover "
             />
             <div className="mt-4 text-center">
-              <p className="font-semibold text-xl text-gray-800">{item.name}</p>
-              <p className="text-gray-500 text-lg">{item.speciality}</p>
+              <p className="font-semibold text sm:text-xl text-gray-800">{item.name}</p>
+              <p className="text-gray-500 text-sm sm:text-lg">{item.speciality}</p>
             </div>
           </div>
         ))}
