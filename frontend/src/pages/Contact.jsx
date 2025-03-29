@@ -56,7 +56,7 @@ const Contact = () => {
                 <div className="space-y-4">
                   <div className="flex items-center gap-4">
                     <img
-                      src="https://img.icons8.com/ios-filled/50/4caf50/phone.png"
+                      src="https://img.icons8.com/ios-filled/50/007bff/phone.png"
                       alt="Phone"
                       className="w-6 h-6"
                     />
@@ -64,7 +64,7 @@ const Contact = () => {
                   </div>
                   <div className="flex items-center gap-4">
                     <img
-                      src="https://img.icons8.com/ios-filled/50/4caf50/email.png"
+                      src="https://img.icons8.com/ios-filled/50/007bff/email.png"
                       alt="Email"
                       className="w-6 h-6"
                     />
@@ -72,7 +72,7 @@ const Contact = () => {
                   </div>
                   <div className="flex items-center gap-4">
                     <img
-                      src="https://img.icons8.com/ios-filled/50/4caf50/address.png"
+                      src="https://img.icons8.com/ios-filled/50/007bff/address.png"
                       alt="Address"
                       className="w-6 h-6"
                     />
