@@ -5,10 +5,10 @@ const Header = () => {
   return (
     <div >
 
-    <div className="flex flex-col-reverse md:flex-row justify-between items-center px-6 md:px-10  bg-blue-200 rounded-xl shadow-md w-full md:w-11/12 mx-auto my-10">
+    <div className="flex flex-col md:flex-row justify-between items-center px-6 md:px-10  bg-blue-200 rounded-xl shadow-md w-full md:w-11/12 mx-auto my-10">
       {/* Left Side */}
       <div className="w-full md:w-2/5 text-center md:text-left mt-6 md:mt-0">
-        <h1 className="p-5 text-5xl font-extrabold text-blue-800 leading-snug">
+        <h1 className="p-5  text-4xl sm:text-5xl font-extrabold text-blue-800 leading-snug">
           Book Appointment With Trusted Doctors
         </h1>
 
