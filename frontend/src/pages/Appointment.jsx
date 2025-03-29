@@ -115,12 +115,12 @@ const Appointment = () => {
 
       {/* Profile Banner Section */}
       <div className="min-h-screen flex flex-col items-center justify-start p-4">
-        <div className="h-fit space-x-10 flex flex-col md:flex-row rounded-xl shadow-md p-4 w-10/12 justify-between">
-          <div className="bg-blue-500 rounded-xl w-1/4 flex justify-center items-center">
-            <img src={docinfo.image} alt={docinfo.name} className="h-fit rounded-lg object-bottom" />
+        <div className="h-fit flex flex-col md:flex-row rounded-xl shadow-md p-4 w-full sm:w-10/12 justify-between gap-6">
+          <div className="bg-blue-500 rounded-xl w-full md:w-1/4 flex justify-center items-center">
+            <img src={docinfo.image} alt={docinfo.name} className="h-48 w-48 md:h-auto md:w-auto rounded-lg object-cover" />
           </div>
 
-          <div className="w-3/4 border border-gray-400 rounded-xl flex flex-col justify-center p-4">
+          <div className="w-full md:w-3/4 border border-gray-400 rounded-xl flex flex-col justify-center p-4">
             <h1 className="text-xl font-bold mb-1">{docinfo.name}</h1>
             <div className="flex items-center space-x-2">
               <span className="text-gray-700 mb-1">{docinfo.degree} - {docinfo.speciality}</span>
@@ -140,12 +140,17 @@ const Appointment = () => {
         </div>
 
         {/* Booking Appointment Section */}
-        <div className="mt-6 w-8/12">
-          <h2 className="text-2xl font-semibold mb-4">Book an Appointment</h2>
+        <div className="mt-6 w-full sm:w-10/12">
+          <h2 className="text-2xl font-semibold mb-4 text-center">Book an Appointment</h2>
 
-          <div className="grid grid-cols-7 gap-2 mb-4">
+          {/* Date Selection */}
+          <div className=" grid grid-cols-4 sm:grid-cols-5 md:grid-cols-7 gap-2 mb-4">
             {docslots.map((_, idx) => (
-              <button key={idx} className={`p-2 rounded-lg ${selectedDate === idx ? 'bg-blue-500 text-white' : 'bg-gray-200'}`} onClick={() => setSelectedDate(idx)}>
+              <button
+                key={idx}
+                className={`p-2 rounded-lg ${selectedDate === idx ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+                onClick={() => setSelectedDate(idx)}
+              >
                 {new Date(new Date().setDate(new Date().getDate() + idx)).toLocaleDateString('en-US', {
                   weekday: 'short',
                   day: 'numeric',
@@ -156,7 +161,7 @@ const Appointment = () => {
 
           {/* Morning Slots */}
           <h3 className="text-xl font-semibold">Morning Slots</h3>
-          <div className="flex gap-4 mt-2">
+          <div className="flex gap-2 sm:gap-4 mt-2 overflow-x-scroll scrollbar-hide ">
             {docslots[selectedDate]?.morning?.map((slot, idx) => (
               <button
                 key={idx}
@@ -170,7 +175,7 @@ const Appointment = () => {
 
           {/* Evening Slots */}
           <h3 className="text-xl font-semibold mt-4">Evening Slots</h3>
-          <div className="flex gap-4 mt-2 ">
+          <div className="flex gap-2 sm:gap-4 mt-2 overflow-x-scroll scrollbar-hide">
             {docslots[selectedDate]?.evening?.map((slot, idx) => (
               <button
                 key={idx}
@@ -182,17 +187,17 @@ const Appointment = () => {
             ))}
           </div>
 
-          <button onClick={handleBooking} className="mt-10 px-6 py-4 bg-blue-500 text-lg text-white rounded-lg">
+          <button
+            onClick={handleBooking}
+            className="mt-10 px-6 py-4 bg-blue-500 text-lg text-white rounded-lg hover:bg-blue-600 transition"
+          >
             Book Appointment
           </button>
         </div>
 
-
-          {/* List Related Doctors */}
-       <RelatedDoctors docId={docId} speciality={docinfo.speciality}/>
-
+        {/* List Related Doctors */}
+        <RelatedDoctors docId={docId} speciality={docinfo.speciality} />
       </div>
-
 
       <Footer />
     </>
