@@ -14,6 +14,7 @@ function AppRoutes() {
       <Routes>
         {/* Public Routes */}
         <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/doctors" element={<Doctors />} />
@@ -24,6 +25,12 @@ function AppRoutes() {
         <Route path="/appointment/:docId" element={<Appointment />} />
         <Route path="/my-profile" element={<MyProfile />} />
         <Route path="/login" element={<Login />} />
+
+        <Route path="/faq" element={<Home />} />
+        <Route path="/terms" element={<Home />} />
+        <Route path="/privacy" element={<Home />} />
+
+
       </Routes>
     </div>
   );

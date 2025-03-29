@@ -30,6 +30,7 @@ import doc12 from './doc12.png'
 import doc13 from './doc13.png'
 import doc14 from './doc14.png'
 import doc15 from './doc15.png'
+import robot from './robot.jpg'
 import Dermatologist from './Dermatologist.svg'
 import Gastroenterologist from './Gastroenterologist.svg'
 import General_physician from './General_physician.svg'
@@ -39,6 +40,7 @@ import Pediatricians from './Pediatricians.svg'
 
 
 export const assets = {
+    robot,
     appointment_img,
     header_img,
     group_profiles,
