@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext ,useRef} from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { assets } from "../assets/assets_frontend/assets";
 import { AppContext } from "../context/AppContext";
@@ -8,6 +8,18 @@ function Navbar() {
   const { token, settoken } = useContext(AppContext);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
+  const closeTimeoutRef = useRef(null);
+
+  const handleMouseEnter = () => {
+    clearTimeout(closeTimeoutRef.current);
+    setShowMenu(true);
+  };
+
+  const handleMouseLeave = () => {
+    closeTimeoutRef.current = setTimeout(() => {
+      setShowMenu(false);
+    }, 200); // adjust delay as needed
+  };
 
   return (
     <header className="top-0 left-0 w-full z-20 bg-white shadow-md">
@@ -101,11 +113,11 @@ function Navbar() {
 
         {/* Desktop Profile Section */}
         {token ? (
-          <div
+            <div
             className="relative hidden md:block cursor-pointer"
-            onMouseEnter={() => setShowMenu(true)}
-            onMouseLeave={() => setShowMenu(false)}
-          >
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            >   
             <img
               src={assets.robot} // Replace with the user's profile picture if available
               alt="Profile"
