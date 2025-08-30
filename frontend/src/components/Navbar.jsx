@@ -2,6 +2,8 @@ import React, { useState, useContext ,useRef} from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { assets } from "../assets/assets_frontend/assets";
 import { AppContext } from "../context/AppContext";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Navbar() {
   const navigate = useNavigate();
@@ -15,10 +17,19 @@ function Navbar() {
     setShowMenu(true);
   };
 
+  const handlelogout = () => {
+    toast.success("Logged out successfully!");
+    settoken(false);
+    setTimeout(() => {
+      navigate("/login")
+    },2000);
+    
+  }
+
   const handleMouseLeave = () => {
     closeTimeoutRef.current = setTimeout(() => {
       setShowMenu(false);
-    }, 200); // adjust delay as needed
+    }, 200); 
   };
 
   return (
@@ -139,7 +150,7 @@ function Navbar() {
                 </button>
                 <button
                   className="w-full px-4 py-2 text-left hover:bg-gray-100"
-                  onClick={() => settoken(false)}
+                  onClick={() =>handlelogout()}
                 >
                   Logout
                 </button>

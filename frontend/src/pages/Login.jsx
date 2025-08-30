@@ -2,6 +2,9 @@ import React, { useState, useContext } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { AppContext } from "../context/AppContext";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 const LoginRegister = () => {
   const { settoken } = useContext(AppContext);
@@ -11,6 +14,8 @@ const LoginRegister = () => {
     email: "",
     password: "",
   });
+  const navigate = useNavigate();
+
 
   const toggleForm = () => {
     setIsRegister(!isRegister);
@@ -29,21 +34,31 @@ const LoginRegister = () => {
     e.preventDefault();
 
     if (
-      (isRegister && (formData.name.trim() === "" || formData.email.trim() === "" || formData.password.trim() === "")) ||
-      (!isRegister && (formData.email.trim() === "" || formData.password.trim() === ""))
+      (isRegister &&
+        (formData.name.trim() === "" ||
+          formData.email.trim() === "" ||
+          formData.password.trim() === "")) ||
+      (!isRegister &&
+        (formData.email.trim() === "" || formData.password.trim() === ""))
     ) {
-      alert("All fields are required");
+      toast.error("All fields are required!");
       return;
     }
 
     console.log(isRegister ? "Register Data:" : "Login Data:", formData);
     settoken(true);
-    alert(`✅ Form submitted! Check the console for ${isRegister ? "Register" : "Login"} data.`);
+    
+    toast.success(` ${isRegister ? "Registered" : "Logged in"} successfully!`);
+    setTimeout(() => {
+       navigate("/");
+    }, 2000); 
+      
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-gray-100">
       <Navbar />
+      <ToastContainer position="top-center" autoClose={3000} />
       <div className="flex-1 flex items-center justify-center p-4">
         <div className="bg-white p-6 sm:p-10 rounded-2xl shadow-lg w-full max-w-md border border-gray-300 transition-shadow hover:shadow-2xl">
           <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-center text-blue-800 flex items-center justify-center gap-2">
@@ -104,7 +119,7 @@ const LoginRegister = () => {
             </button>
           </form>
           <p className="text-center text-gray-600 mt-4 text-sm sm:text-base">
-            {isRegister ? "Already registered?" : "Not registered yet?"} {" "}
+            {isRegister ? "Already registered?" : "Not registered yet?"}{" "}
             <span
               className="text-blue-500 cursor-pointer hover:underline hover:text-blue-700"
               onClick={toggleForm}
