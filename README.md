@@ -101,14 +101,5 @@ The **Doctor Appointment System** is a comprehensive web application designed to
 └── README.md
 ```
 
-## Contributing
-Contributions are welcome! To contribute:
-- Fork the repository.
-- Create a new branch for your feature.
-- Submit a pull request for review.
-
-## License
-This project is licensed under the [MIT License](LICENSE).
-
 
 
